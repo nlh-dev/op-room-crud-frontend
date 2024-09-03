@@ -75,7 +75,7 @@ export const Sidebar = () => {
         </div>
         <div className="LogoutButton">
           <Button className=" w-[100%] h-[45px] bg-red-500">
-            <span className="text-lg">Cerrar Sesión</span>
+            <span className="text-lg"><i className="fa-solid fa-arrow-right-from-bracket"/> Cerrar Sesión</span>
           </Button>
         </div>
       </div>
