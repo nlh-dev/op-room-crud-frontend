@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command"
 
@@ -7,7 +7,11 @@ import './Sidebar.css'
 
 
 export const Sidebar = () => {
+  
+  const navigateTo = useNavigate();
+
   return (
+    
 
     <div className="flex justify-between items-start w-screen h-screen overflow-hidden">
 
@@ -19,7 +23,7 @@ export const Sidebar = () => {
         <div className="comandList-Container grow">
           <Command>
             <CommandList>
-              <Button className="bg-blue-900 w-[100%] h-[45px] mt-3 mb-3"><span className="text-lg">Añadir Pacientes</span></Button>
+              <Button className="bg-blue-900 w-[100%] h-[45px] mt-3 mb-3" onClick={() => navigateTo('/pacientes_actuales/añadir')}><span className="text-lg">Añadir Pacientes</span></Button>
               <CommandGroup heading="General">
                 <CommandItem><Link to={"/inicio"}><span>Inicio</span></Link></CommandItem>
               </CommandGroup>
