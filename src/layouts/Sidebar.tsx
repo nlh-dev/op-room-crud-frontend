@@ -1,53 +1,87 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button"
-import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command"
+import { Button } from "@/components/ui/button";
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
 
-import ssmrlogo from '../assets/ssmr-3.png'
-import './Sidebar.css'
-
+import ssmrlogo from "../assets/ssmr-3.png";
+import "./Sidebar.css";
 
 export const Sidebar = () => {
-  
   const navigateTo = useNavigate();
 
   return (
-    
-
     <div className="flex justify-between items-start w-screen h-screen overflow-hidden">
-
       <div className="flex flex-col w-[300px] min-w-[300px] border-r min-h-screen p-4">
         <div className="opRoom-Container">
-          <img className='ssmrlogo1 h-[50px] mx-2' src={ssmrlogo} />
-          <h1 className="font-bold text-[1.5rem] text-neutral-600 mx-2">QUIRÓFANO</h1>
+          <img className="ssmrlogo1 h-[50px] mx-2" src={ssmrlogo} />
+          <h1 className="font-bold text-[1.5rem] text-neutral-600 mx-2">
+            QUIRÓFANO
+          </h1>
         </div>
         <div className="comandList-Container grow">
           <Command>
             <CommandList>
-              <Button className="bg-blue-900 w-[100%] h-[45px] mt-3 mb-3" onClick={() => navigateTo('/pacientes_actuales/añadir')}><span className="text-lg">Añadir Pacientes</span></Button>
+              {/* <Button
+                className="bg-blue-900 w-[100%] h-[45px] mt-3 mb-3"
+                onClick={() => navigateTo("/pacientes_actuales/añadir")}
+              >
+                <span className="text-lg">Añadir Pacientes</span>
+              </Button> */}
               <CommandGroup heading="General">
-                <CommandItem><Link to={"/inicio"}><span>Inicio</span></Link></CommandItem>
+                <Link to={"/inicio"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-solid fa-house mx-2"/>
+                    <span>Inicio</span>
+                  </CommandItem>
+                </Link>
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup heading="Pacientes">
-                <CommandItem><Link to={"/pacientes_actuales"}><span>Pacientes Actuales</span></Link></CommandItem>
-                <CommandItem><Link to={"/pacientes_previos"}><span>Pacientes Previos</span></Link></CommandItem>
+                <Link to={"/pacientes_actuales"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-solid fa-bed mx-2"/>
+                    <span>Pacientes Actuales</span>
+                  </CommandItem>
+                </Link>
+                <Link to={"/pacientes_previos"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-solid fa-hospital-user mx-2"/>
+                    <span>Pacientes Previos</span>
+                  </CommandItem>
+                </Link>
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup heading="Opciones">
-                <CommandItem><Link to={"/perfil"}><span>Perfil</span></Link></CommandItem>
-                <CommandItem><Link to={"/usuarios"}><span>Usuarios</span></Link></CommandItem>
+                <Link to={"/perfil"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-solid fa-id-card mx-2"/>
+                    <span>Perfil</span>
+                  </CommandItem>
+                </Link>
+                <Link to={"/usuarios"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-solid fa-users mx-2"/>
+                    <span>Usuarios</span>
+                  </CommandItem>
+                </Link>
               </CommandGroup>
             </CommandList>
           </Command>
         </div>
         <div className="LogoutButton">
-          <Button className=" w-[100%] h-[45px] bg-red-500"><span className="text-lg">Cerrar Sesión</span></Button>
+          <Button className=" w-[100%] h-[45px] bg-red-500">
+            <span className="text-lg">Cerrar Sesión</span>
+          </Button>
         </div>
       </div>
-        <div className="p-8 w-full">
-          <Outlet></Outlet>
-        </div>
-
+      <div className="p-8 w-full">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
-}
+};

@@ -1,6 +1,9 @@
 
+
 export const AddPatients = () => {
   return (
-    <h1>THIS IS ADD PATIENTS</h1>
-  )
-}
+    <div>
+      THIS IS ADD NEW PATIENTS
+    </div>
+  );
+};
