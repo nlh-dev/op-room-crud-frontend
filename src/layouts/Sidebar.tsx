@@ -12,6 +12,7 @@ import ssmrlogo from "../assets/ssmr-3.png";
 import "./Sidebar.css";
 
 export const Sidebar = () => {
+  
   const navigateTo = useNavigate();
 
   return (
@@ -52,6 +53,12 @@ export const Sidebar = () => {
                   <CommandItem className="cursor-pointer p-2">
                   <i className="fa-solid fa-hospital-user mx-2"/>
                     <span>Pacientes Previos</span>
+                  </CommandItem>
+                </Link>
+                <Link to={"/intervenciones"}>
+                  <CommandItem className="cursor-pointer p-2">
+                  <i className="fa-brands fa-medrt mx-2"></i>
+                    <span>Lista de Intervenciones</span>
                   </CommandItem>
                 </Link>
               </CommandGroup>

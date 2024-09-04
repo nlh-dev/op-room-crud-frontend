@@ -1,5 +1,6 @@
 import {  useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { TableComponent } from "@/components/TableComponent/TableComponent";
 
 export const CurrentPatients = () =>{
 
@@ -13,9 +14,11 @@ export const CurrentPatients = () =>{
             </div>
         <div className="buttonContainer flex justify-end align-middle items-center">
           <Button className="bg-blue-900 w-[180px] h-[40px] mt-5" onClick={() => navigateTo('/pacientes_actuales/añadir')}>
-          <i className="fa-solid fa-circle-plus"/>
-            <span className="mx-2">Agregar Pacientes</span>
+            <span className="mx-2"><i className="fa-solid fa-circle-plus"/> Agregar Pacientes</span>
           </Button>
+        </div>
+        <div className="tableContainer mt-5">
+        <TableComponent/>
         </div>
       </div>
     )
