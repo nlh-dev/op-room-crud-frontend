@@ -21,7 +21,7 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
         className: [''],
     },
     {
-        header: "Tipo de Cirugía",
+        header: "Fecha de Ingreso",
         column: (data) => data.operatingStartDate,
         type: 'text',
         className: [''],
@@ -43,8 +43,8 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
         ],
         actionIcons: ['Editar', 'Borrar', 'Liberar'],
         className: [
-            'edit_button',
-            'delete_button',
+            'bg-green-500 hover:bg-green-600',
+            'bg-red-700 hover:bg-red-800',
             'release_button',
         ],
     },

@@ -14,5 +14,5 @@ export interface IColumns<T> {
 export interface ITable {
     columns: IColumns<any>[];
     dataTable: any[];
-    returndata?: (icon: string, data: any) => void;
+    returndata: (icon: string | undefined |  null, data: any) => void;
 }
