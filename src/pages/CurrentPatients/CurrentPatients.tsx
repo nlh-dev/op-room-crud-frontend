@@ -1,12 +1,22 @@
 import {  useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TableComponent } from "@/components/TableComponent/TableComponent";
+import { useState } from "react";
+import { CPatientsColums, dataCPatients, ICPatients } from "./CurrentPatients.data";
 
 export const CurrentPatients = () =>{
 
-    const navigateTo = useNavigate();
+  const [columns, setColumns]  = useState(CPatientsColums);
+
+  const getDataTable = (icon: string, data: ICPatients) =>{
+    console.log(icon);
+    console.log(data);
+  }
+  
+  const navigateTo = useNavigate();
 
     return(
+
         <div className="w-[100%]">
             <div className="pageInfo">
                 <h1 className="text-2xl font-bold text-neutral-600"><i className="fa-solid fa-bed mx-2"/> Pacientes Actuales</h1>
@@ -18,7 +28,7 @@ export const CurrentPatients = () =>{
           </Button>
         </div>
         <div className="tableContainer mt-5">
-        <TableComponent/>
+        <TableComponent columns={columns} dataTable={dataCPatients} returndata={getDataTable}/>
         </div>
       </div>
     )
