@@ -1,3 +1,5 @@
+import { Separator } from "@/components/ui/separator";
+
 export const Users = () => {
   return (
     <div>
@@ -6,7 +8,7 @@ export const Users = () => {
           <i className="fa-solid fa-users mx-2" />
           Usuarios
         </h1>
-        <hr className="mt-3" />
+        <Separator className="mt-3" />
       </div>
     </div>
   );

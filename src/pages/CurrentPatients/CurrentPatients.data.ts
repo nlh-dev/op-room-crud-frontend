@@ -4,7 +4,7 @@ export interface ICPatients{
     fullName: string;
     specialityType: string;
     operatingStartDate: string;
-    patientState: string;
+    patientState?: string;
 }
 
 export const CPatientsColums: IColumns<ICPatients>[] = [
@@ -29,7 +29,7 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
     {
         header: "Estado",
         column: (data) => data.patientState,
-        type: 'text',
+        type: 'select',
         className: [''],
     },
     {
@@ -43,9 +43,9 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
         ],
         actionIcons: ['Editar', 'Borrar', 'Liberar'],
         className: [
-            'bg-green-500 hover:bg-green-600',
+            'bg-green-600 hover:bg-green-700',
             'bg-red-700 hover:bg-red-800',
-            'release_button',
+            'bg-slate-800 hover:bg-slate-900',
         ],
     },
 ]
@@ -55,6 +55,5 @@ export const dataCPatients: ICPatients[] = [
         fullName: 'Hector Navarro',
         specialityType: "Cirugía General",
         operatingStartDate: "13-09-2024",
-        patientState: 'En Reposo',
     }
 ]

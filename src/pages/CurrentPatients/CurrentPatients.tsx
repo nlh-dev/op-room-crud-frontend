@@ -1,6 +1,7 @@
 import {  useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TableComponent } from "@/components/TableComponent/TableComponent";
+import { Separator } from "@/components/ui/separator"
 import { useState } from "react";
 import { CPatientsColums, dataCPatients, ICPatients } from "./CurrentPatients.data";
 
@@ -20,10 +21,10 @@ export const CurrentPatients = () =>{
         <div className="w-[100%]">
             <div className="pageInfo">
                 <h1 className="text-2xl font-bold text-neutral-600"><i className="fa-solid fa-bed mx-2"/> Pacientes Actuales</h1>
-                <hr className="mt-3" />
+                <Separator className="mt-3" />
             </div>
         <div className="buttonContainer flex justify-end align-middle items-center">
-          <Button className="bg-blue-900 w-[180px] h-[40px] mt-5" onClick={() => navigateTo('/pacientes_actuales/añadir')}>
+          <Button className="bg-blue-900 hover:bg-blue-950 w-[180px] h-[40px] mt-5" onClick={() => navigateTo('/pacientes_actuales/añadir')}>
             <span className="mx-2"><i className="fa-solid fa-circle-plus"/> Agregar Pacientes</span>
           </Button>
         </div>

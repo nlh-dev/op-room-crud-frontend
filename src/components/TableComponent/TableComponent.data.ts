@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type TypeColumns = "text" | "icon";
+export type TypeColumns = "text" | "icon" | "select";
 
 export interface IColumns<T> {
     header: string;

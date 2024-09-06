@@ -27,12 +27,12 @@ export const Sidebar = () => {
         <div className="comandList-Container grow">
           <Command>
             <CommandList>
-              {/* <Button
-                className="bg-blue-900 w-[100%] h-[45px] mt-3 mb-3"
+              <Button
+                className="bg-blue-900 hover:bg-blue-950 w-[100%] h-[45px] mt-3 mb-3"
                 onClick={() => navigateTo("/pacientes_actuales/añadir")}
               >
                 <span className="text-lg">Añadir Pacientes</span>
-              </Button> */}
+              </Button>
               <CommandGroup heading="General">
                 <Link to={"/inicio"}>
                   <CommandItem className="cursor-pointer p-2">
@@ -81,7 +81,7 @@ export const Sidebar = () => {
           </Command>
         </div>
         <div className="LogoutButton">
-          <Button className=" w-[100%] h-[45px] bg-red-500">
+          <Button className=" w-[100%] h-[45px] bg-red-600 hover:bg-red-700">
             <span className="text-lg"><i className="fa-solid fa-arrow-right-from-bracket"/> Cerrar Sesión</span>
           </Button>
         </div>
