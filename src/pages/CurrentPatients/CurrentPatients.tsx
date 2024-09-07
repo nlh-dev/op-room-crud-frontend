@@ -28,7 +28,7 @@ export const CurrentPatients = () =>{
             <span className="mx-2"><i className="fa-solid fa-circle-plus"/> Agregar Pacientes</span>
           </Button>
         </div>
-        <div className="tableContainer mt-5">
+        <div className="mt-5">
         <TableComponent columns={columns} dataTable={dataCPatients} returndata={getDataTable}/>
         </div>
       </div>

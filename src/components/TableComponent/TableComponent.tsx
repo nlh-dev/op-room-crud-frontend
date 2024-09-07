@@ -21,7 +21,7 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata, }) 
               <TableCell key={index} className="font-medium">
                 {col.type == "text" ? col.column(table) : ''}
                 {col.type == 'icon' && (
-                  <div className="buttons flex items-center justify-evenly">
+                  <div className="flex items-center justify-evenly">
                     {col.icons && col.icons.map((ic: string, indexIcon: number) => (
                       <TableCell>
                         <Button className={`${col.className[indexIcon]}`} onClick={() => returndata(col.actionIcons[indexIcon].toString(), table)}>

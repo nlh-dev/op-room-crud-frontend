@@ -1,12 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/components/ui/command";
+import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 
 import ssmrlogo from "../assets/ssmr-3.png";
 import "./Sidebar.css";
@@ -27,12 +21,12 @@ export const Sidebar = () => {
         <div className="comandList-Container grow">
           <Command>
             <CommandList>
-              <Button
+              {/* <Button
                 className="bg-blue-900 hover:bg-blue-950 w-[100%] h-[45px] mt-3 mb-3"
                 onClick={() => navigateTo("/pacientes_actuales/añadir")}
               >
                 <span className="text-lg">Añadir Pacientes</span>
-              </Button>
+              </Button> */}
               <CommandGroup heading="General">
                 <Link to={"/inicio"}>
                   <CommandItem className="cursor-pointer p-2">
