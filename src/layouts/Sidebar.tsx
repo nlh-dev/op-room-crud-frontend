@@ -27,15 +27,6 @@ export const Sidebar = () => {
               >
                 <span className="text-lg">Añadir Pacientes</span>
               </Button> */}
-              <CommandGroup heading="General">
-                <Link to={"/inicio"}>
-                  <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-solid fa-house mx-2"/>
-                    <span>Inicio</span>
-                  </CommandItem>
-                </Link>
-              </CommandGroup>
-              <CommandSeparator />
               <CommandGroup heading="Pacientes">
                 <Link to={"/pacientes_actuales"}>
                   <CommandItem className="cursor-pointer p-2">
@@ -58,12 +49,6 @@ export const Sidebar = () => {
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup heading="Opciones">
-                <Link to={"/perfil"}>
-                  <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-solid fa-id-card mx-2"/>
-                    <span>Perfil</span>
-                  </CommandItem>
-                </Link>
                 <Link to={"/usuarios"}>
                   <CommandItem className="cursor-pointer p-2">
                   <i className="fa-solid fa-users mx-2"/>

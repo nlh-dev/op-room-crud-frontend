@@ -1,10 +1,17 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "../ui/button";
-import { ITable } from "./TableComponent.data";
+// REACT IMPORTS
 import { FC } from "react";
 
-export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata, }) => {
+// UI COMPONENTS
+import { Button } from "../ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+// DATA COMPONENTS
+import { ITable } from "./TableComponent.data";
+import { AlertDialog } from "../AlertDialog/AlertDialog";
+import { SelectorComponent } from "../SelectorComponent/SelectorComponent";
+
+
+export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) => {
   return (
     <Table>
       <TableHeader className="bg-blue-900">
@@ -34,18 +41,12 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata, }) 
                 {col.type == 'select' && (
                   <div className="selectField flex justify-center items-center">
                     <TableCell>
-                      <Select>
-                        <SelectTrigger className="w-[180px]">
-                          <SelectValue placeholder="Seleccione" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="resting">Reposo</SelectItem>
-                          <SelectItem value="operating">Operacion</SelectItem>
-                        </SelectContent>
-                      </Select>
-
+                      <SelectorComponent/>
                     </TableCell>
                   </div>
+                )}
+                {col.type == 'dialog' &&(
+                  <AlertDialog/>
                 )}
               </TableCell>
             ))}

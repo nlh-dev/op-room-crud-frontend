@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type TypeColumns = "text" | "icon" | "select";
+export type TypeColumns = "text" | "icon" | "select" | "dialog";
 
 export interface IColumns<T> {
     header: string;
@@ -14,5 +14,5 @@ export interface IColumns<T> {
 export interface ITable {
     columns: IColumns<any>[];
     dataTable: any[];
-    returndata: (icon: string | undefined |  null, data: any) => void;
+    returndata?: (icon: string | undefined |  null, data: any) => void;
 }
