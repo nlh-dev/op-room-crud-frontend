@@ -13,7 +13,7 @@ import { TableComponent } from "@/components/TableComponent/TableComponent";
 
 export const Users = () => {
 
-  const [columns, setColumns] = useState(UserColumns)
+  const [columns, setColumns] = useState(UserColumns);
 
   const navigateTo = useNavigate();
 

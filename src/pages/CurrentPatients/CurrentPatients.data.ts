@@ -28,9 +28,21 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
     },
     {
         header: "Estado",
-        column: (data) => data.patientState,
         type: 'select',
         className: [''],
+        column: () => 'operating',
+        // por si le quieres colocar valor por defecto
+        // ahh ok, bueno, en el componente del select esta un trigger que tiene como valor "seleccione", pero, por lo general, cuando se agregue otro paciente, el valor lo van a definir en el fomulario y en ese select es para cambiar cuando este en uno u otro pss
+        selectComponent:[
+            {
+                selectLabel: 'En Reposo',
+                selectValue: 'resting',
+            },
+            {
+                selectLabel: 'En Operacion',
+                selectValue: 'operating',
+            },
+        ]
     },
     {
         header: "Opciones",

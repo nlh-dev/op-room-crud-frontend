@@ -5,15 +5,15 @@ export interface IUsers {
   userName: string;
   passwordUser: string;
   roleUser: string;
-  userState: string;
 }
+
 
 export const UserColumns: IColumns<IUsers>[] = [
   {
     header: "Usuario",
     column: (data) => data.userName,
     type: "text",
-    className: [""],
+    className: [''],
   },
   {
     header: "Contraseña",
@@ -29,9 +29,19 @@ export const UserColumns: IColumns<IUsers>[] = [
   },
   {
     header: "Estado",
-    column: (data) => data.userState,
     type: "select",
+    column: () => 'active',
     className: [''],
+    selectComponent: [
+      {
+        selectValue: 'active',
+        selectLabel: 'Activo'
+      },
+      {
+        selectValue: 'inactive',
+        selectLabel: 'Inactivo'
+      },
+    ],
   },
   {
     header: "Opciones",
@@ -54,6 +64,5 @@ export const dataUsers: IUsers[] = [
         userName: 'Hector Navarro',
         passwordUser: '27822521',
         roleUser: 'Administrador',
-        userState: 'Activo',
     }
 ]

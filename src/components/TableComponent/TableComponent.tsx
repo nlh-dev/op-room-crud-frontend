@@ -7,11 +7,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // DATA COMPONENTS
 import { ITable } from "./TableComponent.data";
+import { Selector } from "../Selector/Selector";
 import { AlertDialog } from "../AlertDialog/AlertDialog";
-import { SelectorComponent } from "../SelectorComponent/SelectorComponent";
-
 
 export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) => {
+
   return (
     <Table>
       <TableHeader className="bg-blue-900">
@@ -41,7 +41,7 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) =
                 {col.type == 'select' && (
                   <div className="selectField flex justify-center items-center">
                     <TableCell>
-                      <SelectorComponent/>
+                      <Selector select={col.selectComponent} value={col.column(table)}/>
                     </TableCell>
                   </div>
                 )}

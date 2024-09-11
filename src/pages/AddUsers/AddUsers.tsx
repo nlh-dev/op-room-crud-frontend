@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { SelectorComponent } from "@/components/SelectorComponent/SelectorComponent";
+import { SelectorComponent } from "@/components/Selector/Selector";
 
 export const AddUsers = () => {
   const navigateTo = useNavigate();
@@ -27,15 +27,10 @@ export const AddUsers = () => {
         <div className="formContainer mt-5">
         <form action="">
           <div className="">
-
-          <Label className="" htmlFor="userName">
-            Nombre de Usuario</Label>
-          <Input className="w-[30%] mx-3" type="text"/>
-          
-
-          <Label className="" htmlFor="userName">Contraseña</Label>
-          <Input className="w-[30%] mx-3" type="text"/>
-
+            <div>
+              <Label className="" htmlFor="userName">Nombre de Usuario</Label>
+              <Input className="w-[30%] mx-3" type="text"/>
+            </div>
           </div>
         </form>
         </div>
