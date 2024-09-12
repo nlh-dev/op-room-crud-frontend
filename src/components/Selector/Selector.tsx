@@ -14,9 +14,8 @@ import {
 
 export const Selector: FC<ISelectComponent> = ({ select, value }) => {
   return (
-    <div className="selectorContainer">
       <Select value={value}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[150px]">
           <SelectValue placeholder="Seleccione" />
         </SelectTrigger>
         <SelectContent>
@@ -27,6 +26,5 @@ export const Selector: FC<ISelectComponent> = ({ select, value }) => {
             ))}
         </SelectContent>
       </Select>
-    </div>
   );
 };
