@@ -5,7 +5,7 @@ export type TypeColumns = "text" | "icon" | "select" | "dialog";
 
 export interface IColumns<T> {
     header: string;
-    column: (data: T) => string; // este siempre deberia de ser requerido
+    column: (data: T) => string;
     type: TypeColumns;
     actionIcons?: string[];
     icons?: string[];

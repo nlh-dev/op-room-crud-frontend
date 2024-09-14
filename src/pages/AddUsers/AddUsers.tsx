@@ -48,16 +48,15 @@ export const AddUsers = () => {
 
           <div className="buttonsContainer w-full flex justify-start items-center mt-5">
           <div className="cancelButton">
-            <Button onClick={() => navigateTo('/usuarios')} className="bg-red-700 hover:bg-red-800 flex justify-center mx-3">
+            <Button onClick={() => navigateTo('/usuarios')} className="bg-red-700 hover:bg-red-800 flex justify-center">
               <i className="fa-solid fa-xmark mx-1"/>Cancelar
               </Button>
             </div>
             <div className="saveButton">
-            <Button type="submit" className="bg-blue-900 hover:bg-blue-950 flex justify-center">
+            <Button type="submit" className="bg-blue-900 hover:bg-blue-950 flex justify-center mx-5">
               <i className="fa-solid fa-floppy-disk mx-1"/>Guardar
               </Button>
             </div>
-
           </div>
         </form>
       </div>

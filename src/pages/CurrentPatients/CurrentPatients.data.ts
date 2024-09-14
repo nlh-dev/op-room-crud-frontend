@@ -30,11 +30,12 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
         header: "Estado",
         type: 'select',
         className: [''],
-        column: () => 'operating',
+        column: () => '',
         selectComponent:[
             {
                 selectLabel: 'En Reposo',
                 selectValue: 'resting',
+                className: 'w-[300px]',
             },
             {
                 selectLabel: 'En Operacion',

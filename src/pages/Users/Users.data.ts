@@ -39,7 +39,7 @@ export const UserColumns: IColumns<IUsers>[] = [
       },
       {
         selectValue: 'inactive',
-        selectLabel: 'Inactivo'
+        selectLabel: 'Inactivo',
       },
     ],
   },

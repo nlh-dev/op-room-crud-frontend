@@ -14,17 +14,19 @@ import {
 
 export const Selector: FC<ISelectComponent> = ({ select, value }) => {
   return (
-      <Select value={value}>
-        <SelectTrigger className="w-[150px]">
+    <div>
+      <Select>
+        <SelectTrigger className='w-[180px]'>
           <SelectValue placeholder="Seleccione" />
         </SelectTrigger>
         <SelectContent>
           {select && select.map((sel, index: number) => (
-              <SelectItem key={index} value={sel.selectValue}>
+            <SelectItem key={index} value={sel.selectValue}>
                 {sel.selectLabel}
               </SelectItem>
             ))}
         </SelectContent>
       </Select>
+    </div>
   );
 };
