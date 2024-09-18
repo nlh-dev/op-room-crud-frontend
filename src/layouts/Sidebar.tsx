@@ -60,7 +60,7 @@ export const Sidebar = () => {
           </Command>
         </div>
         <div className="LogoutButton">
-          <Button className=" w-[100%] h-[45px] bg-red-600 hover:bg-red-700">
+          <Button onClick={() => navigateTo('/login')} className=" w-[100%] h-[45px] bg-red-600 hover:bg-red-700">
             <span className="text-lg"><i className="fa-solid fa-arrow-right-from-bracket"/> Cerrar Sesión</span>
           </Button>
         </div>

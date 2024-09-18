@@ -9,6 +9,7 @@ import { PreviousPatients } from './pages/PrevousPatients/PrevousPatients';
 import { Specialities } from './pages/Specialities/Specialities';
 import { Users } from './pages/Users/Users';
 import { AddUsers } from './pages/AddUsers/AddUsers';
+import { Login } from './pages/Login/Login';
 
 // CSS IMPORTS
 import './App.css'
@@ -27,6 +28,7 @@ export default function App() {
         <Route path='/usuarios' element={<Users/>} />
         <Route path='/usuarios/añadir' element={<AddUsers/>} />
       </Route>
+      <Route path='/login' element={<Login/>}/>
     </Routes>
     </Browser>
   );
