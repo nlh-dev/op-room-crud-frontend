@@ -8,14 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Selector } from "@/components/Selector/Selector";
-import { useState } from "react";
 
 // DATA COMPONENTS
-import { IUsersRoles, UserRolesSelector } from "./AddUsers.data";
+import { UserRolesSelector } from "./AddUsers.data";
 
 export const AddUsers = () => {
 
-  const [roles, setRoles] = useState(UserRolesSelector)
 
   const navigateTo = useNavigate();
   return (
@@ -42,7 +40,7 @@ export const AddUsers = () => {
             </div>
             <div>
               <Label className="" htmlFor="userName">Rol de Usuario</Label>
-              <Selector select={roles}/>
+              <Selector select={UserRolesSelector} className={'w-[300px]'}/>
             </div>
           </div>
 

@@ -12,11 +12,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const Selector: FC<ISelectComponent> = ({ select, value }) => {
+export const Selector: FC<ISelectComponent> = ({ select, className }) => {
   return (
-    <div>
+    <div className={`${className ? className :'w-[180px]'}`}>
       <Select>
-        <SelectTrigger className='w-[180px]'>
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="Seleccione" />
         </SelectTrigger>
         <SelectContent>

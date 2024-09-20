@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
+import { es } from "date-fns/locale";
+
 export const PopoverCalendar = () => {
     const [date, setDate] = useState<Date>();
   return (
@@ -23,13 +25,14 @@ export const PopoverCalendar = () => {
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>Seleccione Fecha</span>}
+            {date ? format(date, "PPP" , {locale: es}) : <span>Seleccione Fecha</span>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
           <Calendar
             mode="single"
             selected={date}
+            locale={es}
             onSelect={setDate}
             initialFocus
           />

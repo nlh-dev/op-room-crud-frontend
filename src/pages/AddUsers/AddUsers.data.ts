@@ -8,7 +8,6 @@ export const UserRolesSelector: ISelect[] = [
     {
         selectValue: 'admin',
         selectLabel: 'Administrador',
-        className: 'w-[300px]',
     },
     {
         selectValue: 'user',
