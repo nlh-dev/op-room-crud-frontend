@@ -1,5 +1,4 @@
 // REACT IMPORTS
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // UI COMPONENTS (SHADCN)
@@ -13,7 +12,6 @@ import { TableComponent } from "@/components/TableComponent/TableComponent";
 
 export const Users = () => {
 
-  const [columns, setColumns] = useState(UserColumns);
 
   const navigateTo = useNavigate();
 
@@ -34,7 +32,7 @@ export const Users = () => {
         </div>
 
       <div className="mt-5">
-        <TableComponent columns={columns} dataTable={dataUsers}/>
+        <TableComponent columns={UserColumns} dataTable={dataUsers}/>
       </div>
     </div>
   );

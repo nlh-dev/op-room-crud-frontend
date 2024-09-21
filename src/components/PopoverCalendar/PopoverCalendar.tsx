@@ -1,7 +1,10 @@
 // REACT IMPORTS
-import { useState } from "react";
+import { FC, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
+
+// DATA COMPONENT
+
 
 // UI COMPONENTS (SHADCN)
 import { cn } from "@/lib/utils";
@@ -11,8 +14,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 import { es } from "date-fns/locale";
 
+
 export const PopoverCalendar = () => {
-    const [date, setDate] = useState<Date>();
+  
+  const [date, setDate] = useState<Date>();
+
   return (
     <div>
       <Popover>
@@ -20,7 +26,7 @@ export const PopoverCalendar = () => {
           <Button
             variant={"outline"}
             className={cn(
-              "w-[280px] justify-start text-left font-normal",
+              "w-[300px] justify-start text-left font-normal",
               !date && "text-muted-foreground"
             )}
           >

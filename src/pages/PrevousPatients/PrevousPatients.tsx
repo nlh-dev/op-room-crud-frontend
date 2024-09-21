@@ -11,7 +11,6 @@ import { PrevousPatientsColums, dataPrevousPatients, IPreviousPatients } from ".
 
 
 export const PreviousPatients = () => {
-  const [columns, setColumns] = useState(PrevousPatientsColums);
 
   const getDataTable = (icon: string, data: IPreviousPatients) => {
     console.log(icon);
@@ -31,7 +30,7 @@ export const PreviousPatients = () => {
         <div className="inputContainer w-[100%] mb-5 flex justify-end">
         <Input className="w-[30%]" placeholder="Buscar Paciente..."/>
         </div>
-        <TableComponent columns={columns} dataTable={dataPrevousPatients} returndata={getDataTable} />
+        <TableComponent columns={PrevousPatientsColums} dataTable={dataPrevousPatients} returndata={getDataTable} />
       </div>
     </div>
   );

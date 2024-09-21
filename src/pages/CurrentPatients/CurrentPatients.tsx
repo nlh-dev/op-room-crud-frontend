@@ -1,5 +1,4 @@
 // REACT IMPORTS
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // UI COMPONENTS (SHADCN)
@@ -14,7 +13,6 @@ import { CPatientsColums, dataCPatients, ICPatients } from "./CurrentPatients.da
 
 export const CurrentPatients = () =>{
 
-  const [columns, setColumns]  = useState(CPatientsColums);
 
   const getDataTable = (icon: string, data: ICPatients) =>{
     console.log(icon);
@@ -36,7 +34,7 @@ export const CurrentPatients = () =>{
           </Button>
         </div>
         <div className="mt-5">
-        <TableComponent columns={columns} dataTable={dataCPatients} returndata={getDataTable}/>
+        <TableComponent columns={CPatientsColums} dataTable={dataCPatients} returndata={getDataTable}/>
         </div>
       </div>
     )

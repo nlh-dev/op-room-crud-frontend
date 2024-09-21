@@ -1,14 +1,15 @@
 // REACT IMPORTS
+import { useState } from "react";
+
+// ASSETS IMPORTS
 import ssmrlogo from "../../assets/ssmr-3.png";
 
-// DATA COMPONENTS
 
 // UI COMPONENTS (SHADCN)
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -18,6 +19,11 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
 export function Login() {
+
+  const [password, setPassword] = useState("");
+
+  const [visible, setVisible] = useState(false);
+
   return (
     <div className="w-full flex justify-center items-center align-middle mt-[150px]">
       <Card className="w-[380px]">
@@ -34,23 +40,24 @@ export function Login() {
           <form>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Nombre de Usuario</Label>
+                <Label htmlFor="username">Nombre de Usuario</Label>
                 <Input
                   type="text"
-                  id="name"
+                  id="userName"
                   placeholder="Ingrese Usuario...."
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="framework">Contraseña</Label>
+                <Label htmlFor="password">Contraseña</Label>
                 <Input
-                  type="password"
-                  id="name"
+                  value={password}
+                  type={visible ? 'text' : 'password'}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Ingrese Contraseña...."
                 />
               </div>
               <div className="flex align-middle items-center space-x-2">
-                <Switch id="showPassword" />
+                <Switch onClick={() => setVisible(!visible)}/>
                 <Label>Mostrar Contraseña</Label>
               </div>
             </div>

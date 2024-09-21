@@ -1,5 +1,4 @@
 // REACT IMPORTS
-import { useState } from "react"
 
 // UI COMPONENTS (SHADCN)
 import { Button } from "@/components/ui/button"
@@ -12,7 +11,6 @@ import { SpecialitiesColumns, ISpecialities, dataSpecialities } from "./Speciali
 
 export const Specialities =() => {
 
-  const [columns, setColumns]  = useState(SpecialitiesColumns);
 
   const getDataTable = (icon: string, data: ISpecialities) =>{
     console.log(icon);
@@ -25,14 +23,14 @@ export const Specialities =() => {
         <Separator className="mt-3" />
     </div>
         <div className="flex justify-end align-middle items-center mt-5">
-          <h1>Añadir Especialidad</h1>
+          <h1 className="font-bold">Añadir Especialidad</h1>
           <Input className="w-[30%] mx-5" placeholder="Inserte Especialidad..."/>
           <Button className="bg-blue-900 hover:bg-blue-950 w-[100px] h-[40px]">
             <span className="mx-2"><i className="fa-solid fa-circle-plus"/> Agregar</span>
           </Button>
         </div>
         <div className="mt-5">
-          <TableComponent columns={columns} dataTable={dataSpecialities} returndata={getDataTable}/>
+          <TableComponent columns={SpecialitiesColumns} dataTable={dataSpecialities} returndata={getDataTable}/>
         </div>
     </div>
   )
