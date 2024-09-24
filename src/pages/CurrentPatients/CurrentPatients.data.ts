@@ -35,7 +35,6 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
             {
                 selectLabel: 'En Reposo',
                 selectValue: 'resting',
-                className: 'w-[300px]',
             },
             {
                 selectLabel: 'En Operacion',
