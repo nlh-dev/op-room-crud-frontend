@@ -7,7 +7,6 @@ export interface IUsers {
   roleUser: string;
 }
 
-
 export const UserColumns: IColumns<IUsers>[] = [
   {
     header: "Usuario",

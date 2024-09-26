@@ -14,7 +14,7 @@ import {
 
 export const Selector: FC<ISelectComponent> = ({ select, className }) => {
   return (
-    <div className={`${className ? className :'w-[180px]'}`}>
+    <div className={`${className ? className : 'w-[180px]'}`}>
       <Select>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Seleccione" />
