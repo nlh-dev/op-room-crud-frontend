@@ -1,28 +1,23 @@
 import { IColumns } from "@/components/TableComponent/TableComponent.data";
+import { IPatient } from "@/interfaces/patients.interface";
+import { formatDate } from "@/lib/utils";
 
-export interface ICPatients{
-    fullName: string;
-    specialityType: string;
-    operatingStartDate: string;
-    patientState?: string;
-}
-
-export const CPatientsColums: IColumns<ICPatients>[] = [
+export const CPatientsColums: IColumns<IPatient>[] = [
     {
         header: "Nombre y Apellido",
-        column: (data) => data.fullName,
+        column: (data) => data.patients_name,
         type: 'text',
         className: [''],
     },
     {
         header: "Tipo de Cirugía",
-        column: (data) => data.specialityType,
+        column: (data) => data.surgery_type.surgery_type_name,
         type: 'text',
         className: [''],
     },
     {
         header: "Fecha de Ingreso",
-        column: (data) => data.operatingStartDate,
+        column: (data) => formatDate(data.patients_started_date),
         type: 'text',
         className: [''],
     },
@@ -30,15 +25,15 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
         header: "Estado",
         type: 'select',
         className: [''],
-        column: () => '',
+        column: (data) => data.patients_surgery_state_id.toString(),
         selectComponent:[
             {
                 selectLabel: 'En Reposo',
-                selectValue: 'resting',
+                selectValue: '1',
             },
             {
                 selectLabel: 'En Operacion',
-                selectValue: 'operating',
+                selectValue: '2',
             },
         ]
     },
@@ -58,12 +53,4 @@ export const CPatientsColums: IColumns<ICPatients>[] = [
             'bg-slate-800 hover:bg-slate-900',
         ],
     },
-]
-
-export const dataCPatients: ICPatients[] = [
-    {
-        fullName: 'Hector Navarro',
-        specialityType: "Cirugía General",
-        operatingStartDate: "13-09-2024",
-    }
-]
+];

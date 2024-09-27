@@ -7,5 +7,5 @@ export interface ISelectComponent {
   select?: ISelect[];
   className?: string;  
   
-  // value?: string;
+  value?: string;
 }

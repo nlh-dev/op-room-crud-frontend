@@ -24,15 +24,15 @@ export const UserColumns: IColumns<IUserData>[] = [
   {
     header: "Estado",
     type: "select",
-    column: () => 'active',
+    column: (data) => data.op_users_state.toString(),
     className: [''],
     selectComponent: [
       {
-        selectValue: 'active',
+        selectValue: 'true',
         selectLabel: 'Activo'
       },
       {
-        selectValue: 'inactive',
+        selectValue: 'false',
         selectLabel: 'Inactivo',
       },
     ],
