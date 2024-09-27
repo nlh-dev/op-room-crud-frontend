@@ -11,9 +11,32 @@ import { useNavigate } from "react-router-dom";
 
 // DATA COMPONENTS
 import { CurrentPatientsStatusSelector } from "./AddPatients.data";
+import { getDataApi } from "@/backend/baseAxios";
+import { ISpecialites } from "@/interfaces/specialities.interface";
+import { useState, useEffect } from "react";
+import { ISelect } from "@/components/Selector/Selector.data";
 
 export const AddPatients = () => {
   const navigateTo = useNavigate();
+  const [dataOptSpecialities, setDataOptSpecialities] = useState<ISelect[]>([]);
+
+  const getSpecialitiesApi = async () => {
+    await getDataApi(`/specialities`).then((response: ISpecialites[]) => {
+      if (response.length > 0) {
+        const options: ISelect[] = response.map(opt => {
+          return {
+            selectLabel: opt.surgery_type_name,
+            selectValue: opt.surgery_type_id.toString()
+          }
+        })
+        setDataOptSpecialities(options);
+      }
+    })
+  }
+  
+  useEffect(() => {
+    getSpecialitiesApi();
+  }, [])
 
   return (
     <div className="w-[100%]">
@@ -37,7 +60,7 @@ export const AddPatients = () => {
           </div>
           <div>
             <Label htmlFor="userName">Tipo de Cirugía</Label>
-            <Selector className="w-[300px]" />
+            <Selector select={dataOptSpecialities} className="w-[300px]" />
           </div>
           <div>
             <Label className="" htmlFor="userName">
