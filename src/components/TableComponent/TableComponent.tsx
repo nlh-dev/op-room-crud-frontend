@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // REACT IMPORTS
 import { FC } from "react";
 
@@ -10,7 +11,11 @@ import { ITable } from "./TableComponent.data";
 import { Selector } from "../Selector/Selector";
 import { AlertDialog } from "../AlertDialog/AlertDialog";
 
-export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) => {
+export const TableComponent: FC<ITable> = ({ columns, dataTable, returnData }) => {
+
+  const actionIcon = (action?: string, data?: any) => {
+    if (returnData) returnData(action, data)
+  }
 
   return (
     <Table>
@@ -31,7 +36,7 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) =
                   <div className="flex items-center justify-evenly">
                     {col.icons && col.icons.map((ic: string, indexIcon: number) => (
                       <TableCell>
-                        <Button className={`${col.className[indexIcon]}`} onClick={() => returndata(col.actionIcons[indexIcon].toString(), table)}>
+                        <Button className={`${col.className[indexIcon]}`} onClick={() => actionIcon((col.actionIcons && col.actionIcons[indexIcon].toString() as string), table)}>
                           <i className={`${ic}`} />
                         </Button>
                       </TableCell>
@@ -41,7 +46,7 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returndata }) =
                 {col.type == 'select' && (
                   <div className="selectField flex justify-center items-center">
                     <TableCell>
-                      <Selector select={col.selectComponent} value={col.column(table)}/>
+                      <Selector select={col.selectComponent} value={col.column(table)}/>                      
                     </TableCell>
                   </div>
                 )}

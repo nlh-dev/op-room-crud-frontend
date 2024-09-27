@@ -1,13 +1,29 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
-
 import ssmrlogo from "../assets/ssmr-3.png";
 import "./Sidebar.css";
+import { useEffect } from "react";
+import { userToken } from "@/backend/authenticate";
 
 export const Sidebar = () => {
-  
+
   const navigateTo = useNavigate();
+
+  const validateUserLoged = () => {
+    if(!userToken()){
+      navigateTo('/login')
+    }
+  }
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    navigateTo('/login')
+  }
+
+  useEffect(() => {
+    validateUserLoged()
+  },[])
 
   return (
     <div className="flex justify-between items-start w-screen h-screen overflow-hidden">
@@ -30,19 +46,19 @@ export const Sidebar = () => {
               <CommandGroup heading="Pacientes">
                 <Link to={"/pacientes_actuales"}>
                   <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-solid fa-bed mx-2"/>
+                    <i className="fa-solid fa-bed mx-2" />
                     <span>Pacientes Actuales</span>
                   </CommandItem>
                 </Link>
                 <Link to={"/pacientes_previos"}>
                   <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-solid fa-hospital-user mx-2"/>
+                    <i className="fa-solid fa-hospital-user mx-2" />
                     <span>Pacientes Previos</span>
                   </CommandItem>
                 </Link>
                 <Link to={"/intervenciones"}>
                   <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-brands fa-medrt mx-2"></i>
+                    <i className="fa-brands fa-medrt mx-2"></i>
                     <span>Lista de Intervenciones</span>
                   </CommandItem>
                 </Link>
@@ -51,7 +67,7 @@ export const Sidebar = () => {
               <CommandGroup heading="Opciones">
                 <Link to={"/usuarios"}>
                   <CommandItem className="cursor-pointer p-2">
-                  <i className="fa-solid fa-users mx-2"/>
+                    <i className="fa-solid fa-users mx-2" />
                     <span>Usuarios</span>
                   </CommandItem>
                 </Link>
@@ -60,8 +76,8 @@ export const Sidebar = () => {
           </Command>
         </div>
         <div className="LogoutButton">
-          <Button onClick={() => navigateTo('/login')} className=" w-[100%] h-[45px] bg-red-600 hover:bg-red-700">
-            <span className="text-lg"><i className="fa-solid fa-arrow-right-from-bracket"/> Cerrar Sesión</span>
+          <Button onClick={logout} className=" w-[100%] h-[45px] bg-red-600 hover:bg-red-700">
+            <span className="text-lg"><i className="fa-solid fa-arrow-right-from-bracket" /> Cerrar Sesión</span>
           </Button>
         </div>
       </div>

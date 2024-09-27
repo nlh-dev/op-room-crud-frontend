@@ -30,7 +30,7 @@ export const PreviousPatients = () => {
         <div className="inputContainer w-[100%] mb-5 flex justify-end">
         <Input className="w-[30%]" placeholder="Buscar Paciente..."/>
         </div>
-        <TableComponent columns={PrevousPatientsColums} dataTable={dataPrevousPatients} returndata={getDataTable} />
+        <TableComponent columns={PrevousPatientsColums} dataTable={dataPrevousPatients} returnData={getDataTable} />
       </div>
     </div>
   );

@@ -1,13 +1,11 @@
 import { IColumns } from "@/components/TableComponent/TableComponent.data";
+import { ISpecialites } from "@/interfaces/specialities.interface";
 
-export interface ISpecialities{
-    specialityType: string;
-}
 
-export const SpecialitiesColumns: IColumns<ISpecialities>[] = [
+export const SpecialitiesColumns: IColumns<ISpecialites>[] = [
     {
         header: "Nombre de la Intervención",
-        column: (data) => data.specialityType,
+        column: (data) => data.surgery_type_name,
         type: 'text',
         className: [''],
     },
@@ -17,16 +15,10 @@ export const SpecialitiesColumns: IColumns<ISpecialities>[] = [
         type: 'icon',
         icons: [
             'fa-solid fa-trash',
-         ],
-        actionIcons: [ 'Editar', 'Borrar' ],
+        ],
+        actionIcons: ['Editar', 'Borrar'],
         className: [
             'bg-red-700 hover:bg-red-800',
         ]
     }
-]
-
-export const dataSpecialities: ISpecialities[] = [
-    {
-        specialityType: "CIRUGÍA GENERAL",
-    }
-]
+];
