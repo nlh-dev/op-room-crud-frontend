@@ -11,10 +11,10 @@ export interface BadResponse {
 }
 
 export interface ResponseLogin extends BaseResponse {
-    user: UserData;
+    user: IUserData;
 }
 
-export interface UserData {
+export interface IUserData {
     id: number;
     op_users: string;
     op_users_password: string;

@@ -1,28 +1,23 @@
 import { IColumns } from "@/components/TableComponent/TableComponent.data";
+import { IUserData } from "@/interfaces/base-response.interface";
+import { capitalizeString } from "@/lib/utils";
 
-export interface IUsers {
-  idNumber: string;
-  userName: string;
-  passwordUser: string;
-  roleUser: string;
-}
-
-export const UserColumns: IColumns<IUsers>[] = [
+export const UserColumns: IColumns<IUserData>[] = [
   {
     header: "Usuario",
-    column: (data) => data.userName,
+    column: (data) => capitalizeString(data.op_users),
     type: "text",
     className: [''],
   },
   {
     header: "Contraseña",
-    column: (data) => data.passwordUser,
+    column: (data) => data.op_users_password,
     type: "text",
     className: [''],
   },
   {
     header: "Rol de Usuario",
-    column: (data) => data.roleUser,
+    column: (data) => data.roles.roles_name,
     type: "text",
     className: [''],
   },
@@ -56,12 +51,3 @@ export const UserColumns: IColumns<IUsers>[] = [
     ],
   }
 ];
-
-export const dataUsers: IUsers[] = [
-    {
-        idNumber: '001',
-        userName: 'Hector Navarro',
-        passwordUser: '27822521',
-        roleUser: 'Administrador',
-    }
-]

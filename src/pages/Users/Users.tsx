@@ -7,13 +7,27 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
 // DATA COMPONENTS
-import { UserColumns, dataUsers } from "./Users.data";
+import { UserColumns } from "./Users.data";
 import { TableComponent } from "@/components/TableComponent/TableComponent";
+import { getDataApi } from "@/backend/baseAxios";
+import { useEffect, useState } from "react";
+import { IUserData } from "@/interfaces/base-response.interface";
 
 export const Users = () => {
-
-
   const navigateTo = useNavigate();
+  const [dataUsers, setDataUsers] = useState<IUserData[]>([]);
+
+  const getUsersApi = async() => {
+    await getDataApi(`/users`).then((response: IUserData[]) => {
+      if(response.length > 0){
+        setDataUsers(response);
+      }
+    })
+  }
+
+  useEffect(() => {
+    getUsersApi();
+  },[])
 
   return (
     <div>
