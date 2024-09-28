@@ -22,7 +22,7 @@ export const CurrentPatients = () => {
 
   const getCurrentPatientApi = async () => {
     setLoader(true);
-    await getDataApi(`/patients`).then((response: IPatient[]) => {
+    await getDataApi(`/patients/current`).then((response: IPatient[]) => {
       if (response.length > 0) {
         setDataCurrentPatient(response);
         setBaseDataCurrentPatient(response);

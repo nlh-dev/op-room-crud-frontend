@@ -1,4 +1,5 @@
 export interface IPatient {
+    formatDate(patients_started_date: Date): string;
     patients_id:               number;
     patients_name:             string;
     patients_surgery_type_id:  number;

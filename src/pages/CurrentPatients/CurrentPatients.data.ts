@@ -17,7 +17,7 @@ export const CPatientsColums: IColumns<IPatient>[] = [
     },
     {
         header: "Fecha de Ingreso",
-        column: (data) => formatDate(data.patients_started_date),
+        column: (data) => data.patients_updated_date ? formatDate(data.patients_updated_date) : '',
         type: 'text',
         className: [''],
     },
