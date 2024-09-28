@@ -87,7 +87,7 @@ export const AddUsers = () => {
       setDefaultValues(parseUser);
       reset(parseUser);
     }
-  }, [location, reset])
+  }, [location, reset, getUser])
 
 
 

@@ -79,7 +79,7 @@ export const AddSpecialities = () => {
             setDefaultValues(parseUser);
             reset(parseUser);
         }
-    }, [location, reset])
+    }, [location, reset, getUser])
 
     return (
         <div className="w-[100%]">
