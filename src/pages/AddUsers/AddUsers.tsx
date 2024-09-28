@@ -65,11 +65,11 @@ export const AddUsers = () => {
         <Form  {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="formContainer w-[100%] flex justify-between items-center mt-5">
-
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
+                  
                   <FormItem>
                     <FormLabel>Nombre de Usuario</FormLabel>
                     <FormControl>
@@ -103,7 +103,7 @@ export const AddUsers = () => {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl className="!w-[300px]">
                         <SelectTrigger>
-                          <SelectValue placeholder="" />
+                          <SelectValue placeholder=""/>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent >
