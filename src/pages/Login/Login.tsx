@@ -50,7 +50,7 @@ export function Login() {
       if (response.success) {
         localStorage.setItem('user', JSON.stringify(parseResponse.user));
         setTimeout(() => {
-          navigate('/')
+          navigate('/pacientes_actuales')
         }, 1500);
       }
     })

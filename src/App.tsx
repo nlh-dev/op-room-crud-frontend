@@ -19,7 +19,7 @@ export default function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         
-        <Route path='/' element={<Sidebar />}>
+        <Route element={<Sidebar />}>
           <Route path='/pacientes_actuales' element={<CurrentPatients />} />
           <Route path='/pacientes_actuales/añadir' element={<AddPatients />} />
           <Route path='/pacientes_previos' element={<PreviousPatients />} />

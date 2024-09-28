@@ -19,7 +19,7 @@ export const DeleteDialog: FC<IDeleteDialog> = ({open, close, text}) => {
 
             <DialogDescription className="w-full flex items-center justify-center gap-5 !mt-8">
               
-              <Button onClick={() => close(false)} variant={'destructive'}>Cancelar555</Button>
+              <Button onClick={() => close(false)} variant={'destructive'}>Cancelar</Button>
               <Button onClick={() => close(true)} className="bg-blue-900 text-white hover:bg-blue-950 transition-all">Confirmar</Button>
             </DialogDescription>
           </DialogHeader>

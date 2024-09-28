@@ -56,7 +56,6 @@ export const Users = () => {
     if (borrar) {
       deleteData();
     }
-
     setOpenDialog(false);
   }
 
@@ -77,7 +76,6 @@ export const Users = () => {
       duration: 1500
     })
   }
-
 
   return (
     <div>
