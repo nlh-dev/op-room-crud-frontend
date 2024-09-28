@@ -8,15 +8,22 @@ import { Separator } from "@/components/ui/separator"
 // DATA COMPONENTS
 import { TableComponent } from "@/components/TableComponent/TableComponent"
 import { SpecialitiesColumns } from "./Specialities.data"
-import { getDataApi } from "@/backend/baseAxios"
+import { deleteDataApi, getDataApi } from "@/backend/baseAxios"
 import { useState, useEffect } from "react"
 import { ISpecialites } from "@/interfaces/specialities.interface"
 import { Loader } from "@/components/loader/Loader"
+import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog"
+import { BaseResponse } from "@/interfaces/base-response.interface"
+import { useToast } from "@/hooks/use-toast"
 
 export const Specialities = () => {
   const [dataSpecialities, setDataSpecialities] = useState<ISpecialites[]>([]);
+  const [dataSelected, setDataSelected] = useState<ISpecialites>();
   const [baseDataSpecialities, setBaseDataSpecialities] = useState<ISpecialites[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+  const {toast} = useToast();
 
   const getSpecialitiesApi = async () => {
     setLoader(true);
@@ -39,9 +46,36 @@ export const Specialities = () => {
   }, [])
 
   const getDataTable = (icon: string, data: ISpecialites) => {
-    console.log(icon);
-    console.log(data);
+    setDataSelected(data);
+    setOpenDialog(true);
   }
+
+  const closeDialog = (borrar: boolean) => {
+    if (borrar) {
+      deleteData();
+    }
+
+    setOpenDialog(false);
+  }
+
+  const deleteData = async () => {
+    if (dataSelected) {
+      await deleteDataApi('/specialities', dataSelected.surgery_type_id as number).then((response: BaseResponse) => {
+        showToast(response);
+        getSpecialitiesApi();
+      })
+    }
+  }
+
+  const showToast = (baseResponse: BaseResponse) => {
+    toast({
+      variant: baseResponse.success ? 'default' : "destructive",
+      description: baseResponse.message,
+      className: `!left-0 !right-0 !mx-auto !w-full ${baseResponse.success && 'bg-blue-900 text-white'} font-bold text-center`,
+      duration: 1500
+    })
+  }
+
   return (
     <div className="w-[100%]">
       <div className="pageInfo">
@@ -55,6 +89,8 @@ export const Specialities = () => {
           <span className="mx-2"><i className="fa-solid fa-circle-plus" /> Agregar</span>
         </Button>
       </div>
+
+      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este servicio?'} />
 
       <div className="mt-5">
         {loader ? (

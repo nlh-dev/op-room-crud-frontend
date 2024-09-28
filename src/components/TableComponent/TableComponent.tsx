@@ -14,7 +14,7 @@ import { AlertDialog } from "../AlertDialog/AlertDialog";
 export const TableComponent: FC<ITable> = ({ columns, dataTable, returnData }) => {
 
   const actionIcon = (action?: string, data?: any) => {
-    if (returnData) returnData(action, data)
+    if (returnData) returnData(action as string, data)
   }
 
   return (

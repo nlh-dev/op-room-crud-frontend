@@ -41,6 +41,7 @@ export const UserColumns: IColumns<IUserData>[] = [
     header: "Opciones",
     column: () => '',
     type: "icon",
+    actionIcons: ['edit', 'delete'],
     icons: [
         'fa-solid fa-pen-to-square',
         'fa-solid fa-trash',
