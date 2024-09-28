@@ -26,6 +26,7 @@ export default function App() {
           <Route path='/intervenciones' element={<Specialities />} />
           <Route path='/usuarios' element={<Users />} />
           <Route path='/usuarios/añadir' element={<AddUsers />} />
+          <Route path='/usuarios/editar' element={<AddUsers />} />
         </Route>
       </Routes>
 
