@@ -9,16 +9,21 @@ import { Button } from "@/components/ui/button";
 // DATA COMPONENTS
 import { UserColumns } from "./Users.data";
 import { TableComponent } from "@/components/TableComponent/TableComponent";
-import { getDataApi } from "@/backend/baseAxios";
+import { deleteDataApi, getDataApi } from "@/backend/baseAxios";
 import { useEffect, useState } from "react";
-import { IUserData } from "@/interfaces/base-response.interface";
+import { BaseResponse, IUserData } from "@/interfaces/base-response.interface";
 import { Loader } from "@/components/loader/Loader";
+import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog";
+import { useToast } from "@/hooks/use-toast";
 
 export const Users = () => {
   const navigateTo = useNavigate();
   const [dataUsers, setDataUsers] = useState<IUserData[]>([]);
   const [baseDataUsers, setBaseDataUsers] = useState<IUserData[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [dataSelected, setDataSelected] = useState<IUserData>();
+  const {toast} = useToast();
 
   const getUsersApi = async () => {
     setLoader(true);
@@ -38,7 +43,41 @@ export const Users = () => {
 
   useEffect(() => {
     getUsersApi();
-  }, [])
+  }, []);
+
+  const getDataTable = (icon: string, data: IUserData) => {
+    if(icon == 'delete'){
+      setDataSelected(data);
+      setOpenDialog(true);
+    }
+  }
+
+  const closeDialog = (borrar: boolean) => {
+    if (borrar) {
+      deleteData();
+    }
+
+    setOpenDialog(false);
+  }
+
+  const deleteData = async () => {
+    if (dataSelected) {
+      await deleteDataApi('/users', dataSelected.id as number).then((response: BaseResponse) => {
+        showToast(response);
+        getUsersApi();
+      })
+    }
+  }
+
+  const showToast = (baseResponse: BaseResponse) => {
+    toast({
+      variant: baseResponse.success ? 'default' : "destructive",
+      description: baseResponse.message,
+      className: `!left-0 !right-0 !mx-auto !w-full ${baseResponse.success && 'bg-blue-900 text-white'} font-bold text-center`,
+      duration: 1500
+    })
+  }
+
 
   return (
     <div>
@@ -56,10 +95,12 @@ export const Users = () => {
         </Button>
       </div>
 
+      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este usuario?'} />
+
       <div className="mt-5">
         {loader ? <Loader /> : (
           dataUsers && dataUsers.length > 0 ?
-            <TableComponent columns={UserColumns} dataTable={dataUsers} />
+            <TableComponent columns={UserColumns} dataTable={dataUsers} returnData={getDataTable}/>
             : <p className="text-center">No se encontraron datos.</p>
         )}
       </div>
