@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { IUserData, BaseResponse } from '@/interfaces/base-response.interface';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button";
 import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
