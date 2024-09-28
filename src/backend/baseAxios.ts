@@ -55,7 +55,7 @@ export const postDataFileApi = async (endpoint: string, data: any): Promise<Resp
     })
 }
 
-export const putDataApi = async (endpoint: string,id: number, data: any): Promise<BaseResponse> => {
+export const putDataApi = async (endpoint: string, id: number, data: any): Promise<BaseResponse> => {
     return await axiosInstance.put(`${endpoint}/${id}`, data).then((response) => {
         return response.data;
     }).catch((err) => {

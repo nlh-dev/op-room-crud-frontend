@@ -7,7 +7,7 @@ export interface ICreateUser {
     role: string;
 }
 
-export const defaultValues: ICreateUser = {
+export const initialValues: ICreateUser = {
     name: '',
     password: '',
     role: ''

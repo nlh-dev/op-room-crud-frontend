@@ -15,6 +15,7 @@ import { Loader } from "@/components/loader/Loader"
 import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog"
 import { BaseResponse } from "@/interfaces/base-response.interface"
 import { useToast } from "@/hooks/use-toast"
+import { useNavigate } from "react-router-dom"
 
 export const Specialities = () => {
   const [dataSpecialities, setDataSpecialities] = useState<ISpecialites[]>([]);
@@ -23,7 +24,8 @@ export const Specialities = () => {
   const [loader, setLoader] = useState<boolean>(false);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
 
-  const {toast} = useToast();
+  const { toast } = useToast();
+  const navigateTo = useNavigate();
 
   const getSpecialitiesApi = async () => {
     setLoader(true);
@@ -85,8 +87,10 @@ export const Specialities = () => {
       <div className="flex justify-end align-middle items-center mt-5">
         <h1 className="font-bold">Añadir Especialidad</h1>
         <Input className="w-[30%] mx-5" onChange={(e) => filterData(e.target.value)} placeholder="Inserte Especialidad..." />
-        <Button className="bg-blue-900 hover:bg-blue-950 w-[100px] h-[40px]">
-          <span className="mx-2"><i className="fa-solid fa-circle-plus" /> Agregar</span>
+        <Button onClick={() => navigateTo('añadir')} className="bg-blue-900 hover:bg-blue-950 w-[100px] h-[40px]">
+          <span className="mx-2">
+            <i className="fa-solid fa-circle-plus" /> Agregar
+          </span>
         </Button>
       </div>
 

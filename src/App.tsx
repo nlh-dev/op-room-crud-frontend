@@ -12,6 +12,7 @@ import { Login } from './pages/Login/Login';
 import { Toaster } from "@/components/ui/toaster"
 // CSS IMPORTS
 import './App.css'
+import { AddSpecialities } from './pages/AddSpecialities/AddSpecialities';
 
 export default function App() {
   return (
@@ -19,13 +20,15 @@ export default function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         
-        <Route path='/' element={<Sidebar />}>
+        <Route element={<Sidebar />}>
           <Route path='/pacientes_actuales' element={<CurrentPatients />} />
           <Route path='/pacientes_actuales/añadir' element={<AddPatients />} />
           <Route path='/pacientes_previos' element={<PreviousPatients />} />
           <Route path='/intervenciones' element={<Specialities />} />
+          <Route path='/intervenciones/añadir' element={<AddSpecialities />} />
           <Route path='/usuarios' element={<Users />} />
           <Route path='/usuarios/añadir' element={<AddUsers />} />
+          <Route path='/usuarios/editar' element={<AddUsers />} />
         </Route>
       </Routes>
 

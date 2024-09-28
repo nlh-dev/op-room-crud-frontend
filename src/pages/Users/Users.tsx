@@ -50,13 +50,16 @@ export const Users = () => {
       setDataSelected(data);
       setOpenDialog(true);
     }
+    if(icon == 'edit'){
+      navigateTo('editar');
+      localStorage.setItem('userEdit',JSON.stringify(data));
+    }
   }
 
   const closeDialog = (borrar: boolean) => {
     if (borrar) {
       deleteData();
     }
-
     setOpenDialog(false);
   }
 
@@ -77,7 +80,6 @@ export const Users = () => {
       duration: 1500
     })
   }
-
 
   return (
     <div>
