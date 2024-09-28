@@ -86,7 +86,7 @@ export const AddSpecialities = () => {
             <div>
                 <div className="pageInfo">
                     <h1 className="text-2xl font-bold text-neutral-600">
-                        <i className={`fa-solid ${text == 'Añadir' ? 'fa-user-plus' : 'fa-user-pen'}`} /> {text} Especialidad
+                        <i className={`fa-solid ${text == 'Añadir' ? 'fa-brands fa-medrt mx-2' : 'fa-user-pen'}`} /> {text} Especialidad
                     </h1>
                 </div>
             </div>
