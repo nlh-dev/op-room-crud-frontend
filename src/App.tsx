@@ -23,6 +23,7 @@ export default function App() {
         <Route element={<Sidebar />}>
           <Route path='/pacientes_actuales' element={<CurrentPatients />} />
           <Route path='/pacientes_actuales/añadir' element={<AddPatients />} />
+          <Route path='/pacientes_actuales/editar' element={<AddPatients />} />
           <Route path='/pacientes_previos' element={<PreviousPatients />} />
           <Route path='/intervenciones' element={<Specialities />} />
           <Route path='/intervenciones/añadir' element={<AddSpecialities />} />

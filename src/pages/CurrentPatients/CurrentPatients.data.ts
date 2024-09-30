@@ -17,25 +17,15 @@ export const CPatientsColums: IColumns<IPatient>[] = [
     },
     {
         header: "Fecha de Ingreso",
-        column: (data) => data.patients_updated_date ? formatDate(data.patients_updated_date) : '',
+        column: (data) => data.patients_started_date ? formatDate(data.patients_started_date) : '',
         type: 'text',
         className: [''],
     },
     {
         header: "Estado",
-        type: 'select',
+        type: 'text',
         className: [''],
-        column: (data) => data.patients_surgery_state_id.toString(),
-        selectComponent:[
-            {
-                selectLabel: 'En Reposo',
-                selectValue: '1',
-            },
-            {
-                selectLabel: 'En Operacion',
-                selectValue: '2',
-            },
-        ]
+        column: (data) => data.surgery_states.surgery_state_name.toString(),
     },
     {
         header: "Opciones",

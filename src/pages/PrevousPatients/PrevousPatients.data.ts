@@ -17,7 +17,7 @@ export const PrevousPatientsColums: IColumns<IPatient>[] =[
     },
     {
         header: "Fecha de Egreso",
-        column: (data) => data.patients_started_date ? formatDate(data.patients_started_date) : '',
+        column: (data) => data.patients_updated_date ? formatDate(data.patients_updated_date) : '',
         type: 'text',
         className: [''],
     },
