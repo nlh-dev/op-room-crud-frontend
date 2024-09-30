@@ -1,18 +1,24 @@
 export interface ISidebar {
-    group?: string;
     items: string;
-    icon?: string;
+    icon: string;
     redirecTo: string;
-    type: string;
 }
 
 export const SidebarMenu:ISidebar[] = [
     {
-        group: 'Pacientes',
         items: "Pacientes Actuales",
-        icon: "fa-solid fa-bed",
+        icon: "fa-solid fa-bed mx-2",
         redirecTo: '/pacientes_actuales',
-        type: 'link',
+    },
+    {
+        items: "Pacientes Previos",
+        icon: "fa-solid fa-hospital-user mx-2",
+        redirecTo: '/pacientes_previos',
+    },
+    {
+        items: "Lista de Intervenciones",
+        icon: "fa-brands fa-medrt mx-2",
+        redirecTo: '/intervenciones',
     },
     
 ]

@@ -1,5 +1,5 @@
 // REACT IMPORTS
-import { BrowserRouter as Browser, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Browser, Routes, Route, Navigate } from 'react-router-dom';
 // PAGES
 import { Sidebar } from './layouts/Sidebar'
 import { CurrentPatients } from './pages/CurrentPatients/CurrentPatients';
@@ -31,6 +31,8 @@ export default function App() {
           <Route path='/usuarios/añadir' element={<AddUsers />} />
           <Route path='/usuarios/editar' element={<AddUsers />} />
         </Route>
+
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
 
       <Toaster />

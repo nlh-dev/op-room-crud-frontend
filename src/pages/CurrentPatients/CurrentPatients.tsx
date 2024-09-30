@@ -15,12 +15,16 @@ import { IPatient } from "@/interfaces/patients.interface";
 import { Loader } from "@/components/loader/Loader";
 import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog";
 import { useToast } from "@/hooks/use-toast";
-import { BaseResponse } from "@/interfaces/base-response.interface";
+import { BaseResponse, IUserData } from "@/interfaces/base-response.interface";
 import { DialogUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient";
 import { IUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient.data";
+import { userToken } from "@/backend/authenticate";
+import { IColumns } from "@/components/TableComponent/TableComponent.data";
 
 export const CurrentPatients = () => {
   const navigateTo = useNavigate();
+  const [columuns, setColumns] = useState<IColumns<IPatient>[]>(CPatientsColums);
+
   const [dataCurrentPatients, setDataCurrentPatient] = useState<IPatient[]>([]);
   const [baseDataCurrentPatients, setBaseDataCurrentPatient] = useState<IPatient[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
@@ -28,6 +32,18 @@ export const CurrentPatients = () => {
   const [openDialogUpdate, setOpenDialogUpdate] = useState<boolean>(false);
   const [dataSelected, setDataSelected] = useState<IPatient>();
   const { toast } = useToast();
+  const userData: IUserData = userToken();
+
+  const changeColumns = () => {
+    const copyColumns = CPatientsColums.filter(col => col.header !== 'Opciones');
+    setColumns(copyColumns);
+  }
+
+  useEffect(() => {
+    if (userData.roles.roles_name == 'Usuario Estándar') {
+      changeColumns()
+    }
+  }, [])
 
   const getCurrentPatientApi = async () => {
     setLoader(true);
@@ -61,7 +77,7 @@ export const CurrentPatients = () => {
       localStorage.setItem('patientEdit', JSON.stringify(data));
       navigateTo('editar')
     }
-    if(icon == 'Liberar'){
+    if (icon == 'Liberar') {
       setOpenDialogUpdate(true);
       setDataSelected(data);
     }
@@ -117,9 +133,12 @@ export const CurrentPatients = () => {
       </div>
       <div className="buttonContainer flex justify-end align-middle items-center mt-5">
         <Input className="w-[30%] mx-5" onChange={(e) => filterData(e.target.value)} placeholder="Buscar Paciente..." />
-        <Button className="bg-blue-900 hover:bg-blue-950 w-[180px] h-[40px]" onClick={() => navigateTo('/pacientes_actuales/añadir')}>
-          <span className="mx-2"><i className="fa-solid fa-circle-plus" /> Agregar Pacientes</span>
-        </Button>
+
+        {userData.roles.roles_name !== 'Usuario Estándar' && (
+          <Button className="bg-blue-900 hover:bg-blue-950 w-[180px] h-[40px]" onClick={() => navigateTo('/pacientes_actuales/añadir')}>
+            <span className="mx-2"><i className="fa-solid fa-circle-plus" /> Agregar Pacientes</span>
+          </Button>
+        )}
       </div>
 
       <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este paciente?'} />
@@ -128,7 +147,7 @@ export const CurrentPatients = () => {
       <div className="mt-5">
         {loader ? <Loader /> : (
           dataCurrentPatients && dataCurrentPatients.length > 0 ?
-            <TableComponent columns={CPatientsColums} dataTable={dataCurrentPatients} returnData={getDataTable} />
+            <TableComponent columns={columuns} dataTable={dataCurrentPatients} returnData={getDataTable} />
             :
             <p className="text-center">No se encontraron datos.</p>
         )}
