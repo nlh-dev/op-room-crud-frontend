@@ -3,15 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import ssmrlogo from "../assets/ssmr-3.png";
 import "./Sidebar.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { userToken } from "@/backend/authenticate";
+import { ISidebar, SidebarMenu } from "./Sidebar.data";
+import { IUserData } from "@/interfaces/base-response.interface";
 
 export const Sidebar = () => {
 
   const navigateTo = useNavigate();
+  const [menu, setMenu] = useState<ISidebar[]>(SidebarMenu);
+  const userData: IUserData = userToken();
+
+  useEffect(() => {
+    if (userData.roles.roles_name == 'Usuario Estándar') {
+      changeMenu();
+    }
+  }, [])
+
+  const changeMenu = () => {
+    const copyMeny = SidebarMenu.filter(opt => opt.items === 'Pacientes Actuales');
+    setMenu(copyMeny)
+  }
 
   const validateUserLoged = () => {
-    if(!userToken()){
+    if (!userToken()) {
       navigateTo('/login')
     }
   }
@@ -23,7 +38,7 @@ export const Sidebar = () => {
 
   useEffect(() => {
     validateUserLoged()
-  },[])
+  }, [])
 
   return (
     <div className="flex justify-between items-start w-screen h-screen overflow-hidden">
@@ -44,34 +59,30 @@ export const Sidebar = () => {
                 <span className="text-lg">Añadir Pacientes</span>
               </Button> */}
               <CommandGroup heading="Pacientes">
-                <Link to={"/pacientes_actuales"}>
-                  <CommandItem className="cursor-pointer p-2">
-                    <i className="fa-solid fa-bed mx-2" />
-                    <span>Pacientes Actuales</span>
-                  </CommandItem>
-                </Link>
-                <Link to={"/pacientes_previos"}>
-                  <CommandItem className="cursor-pointer p-2">
-                    <i className="fa-solid fa-hospital-user mx-2" />
-                    <span>Pacientes Previos</span>
-                  </CommandItem>
-                </Link>
-                <Link to={"/intervenciones"}>
-                  <CommandItem className="cursor-pointer p-2">
-                    <i className="fa-brands fa-medrt mx-2"></i>
-                    <span>Lista de Intervenciones</span>
-                  </CommandItem>
-                </Link>
+                {menu && menu.map((opt: ISidebar, index: number) => (
+                  <Link key={index} to={opt.redirecTo}>
+                    <CommandItem className="cursor-pointer p-2">
+                      <i className={opt.icon} />
+                      <span>{opt.items}</span>
+                    </CommandItem>
+                  </Link>
+                ))}
               </CommandGroup>
-              <CommandSeparator />
-              <CommandGroup heading="Opciones">
-                <Link to={"/usuarios"}>
-                  <CommandItem className="cursor-pointer p-2">
-                    <i className="fa-solid fa-users mx-2" />
-                    <span>Usuarios</span>
-                  </CommandItem>
-                </Link>
-              </CommandGroup>
+
+              {userData.roles.roles_name !== 'Usuario Estándar' && (
+                <>
+                  <CommandSeparator />
+                  <CommandGroup heading="Opciones">
+                    <Link to={"/usuarios"}>
+                      <CommandItem className="cursor-pointer p-2">
+                        <i className="fa-solid fa-users mx-2" />
+                        <span>Usuarios</span>
+                      </CommandItem>
+                    </Link>
+                  </CommandGroup>
+                </>
+              )}
+
             </CommandList>
           </Command>
         </div>
