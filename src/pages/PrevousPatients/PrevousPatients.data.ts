@@ -1,27 +1,23 @@
 import { IColumns } from "@/components/TableComponent/TableComponent.data";
+import { IPatient } from "@/interfaces/patients.interface";
+import { formatDate } from "@/lib/utils";
 
-export interface IPreviousPatients{
-    fullName: string;
-    specialityType: string;
-    operatingDischargeDate: string;
-}
-
-export const PrevousPatientsColums: IColumns<IPreviousPatients>[] =[
+export const PrevousPatientsColums: IColumns<IPatient>[] =[
     {
         header: "Nombre y Apellido",
-        column: (data) => data.fullName,
+        column: (data) => data.patients_name,
         type: 'text',
         className: [''],
     },
     {
         header: "Tipo de Cirugía",
-        column: (data) => data.specialityType,
+        column: (data) => data.surgery_type.surgery_type_name,
         type: 'text',
         className: [''],
     },
     {
         header: "Fecha de Egreso",
-        column: (data) => data.operatingDischargeDate,
+        column: (data) => data.patients_updated_date ? formatDate(data.patients_updated_date) : '',
         type: 'text',
         className: [''],
     },
@@ -39,12 +35,4 @@ export const PrevousPatientsColums: IColumns<IPreviousPatients>[] =[
         ],
         actionIcons: ['Editar', 'Borrar'],
     },
-]
-
-export const dataPrevousPatients: IPreviousPatients[] = [
-    {
-        fullName: 'Hector Navarro',
-        specialityType: "Cirugía General",
-        operatingDischargeDate: "26-09-2024",
-    }
 ]

@@ -10,20 +10,29 @@ import { Input } from "@/components/ui/input";
 import { TableComponent } from "@/components/TableComponent/TableComponent";
 import { CPatientsColums } from "./CurrentPatients.data";
 import { useEffect, useState } from "react";
-import { getDataApi } from "@/backend/baseAxios";
+import { deleteDataApi, getDataApi, putDataApi } from "@/backend/baseAxios";
 import { IPatient } from "@/interfaces/patients.interface";
 import { Loader } from "@/components/loader/Loader";
+import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog";
+import { useToast } from "@/hooks/use-toast";
+import { BaseResponse } from "@/interfaces/base-response.interface";
+import { DialogUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient";
+import { IUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient.data";
 
 export const CurrentPatients = () => {
   const navigateTo = useNavigate();
   const [dataCurrentPatients, setDataCurrentPatient] = useState<IPatient[]>([]);
   const [baseDataCurrentPatients, setBaseDataCurrentPatient] = useState<IPatient[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [openDialogUpdate, setOpenDialogUpdate] = useState<boolean>(false);
+  const [dataSelected, setDataSelected] = useState<IPatient>();
+  const { toast } = useToast();
 
   const getCurrentPatientApi = async () => {
     setLoader(true);
-    await getDataApi(`/patients`).then((response: IPatient[]) => {
-      if (response.length > 0) {
+    await getDataApi(`/patients/current`).then((response: IPatient[]) => {
+      if (response) {
         setDataCurrentPatient(response);
         setBaseDataCurrentPatient(response);
       }
@@ -44,8 +53,60 @@ export const CurrentPatients = () => {
   }, [])
 
   const getDataTable = (icon: string, data: IPatient) => {
-    console.log(icon);
-    console.log(data);
+    if (icon == 'Borrar') {
+      setDataSelected(data);
+      setOpenDialog(true);
+    }
+    if (icon == 'Editar') {
+      localStorage.setItem('patientEdit', JSON.stringify(data));
+      navigateTo('editar')
+    }
+    if(icon == 'Liberar'){
+      setOpenDialogUpdate(true);
+      setDataSelected(data);
+    }
+  }
+
+  const updatePatient = (date: IUpdatePatient | null) => {
+    if (date) {
+      updatePatientData(date);
+    }
+    setOpenDialogUpdate(false);
+  }
+
+  const closeDialog = (borrar: boolean) => {
+    if (borrar) {
+      deleteData();
+    }
+    setOpenDialog(false);
+  }
+
+  const updatePatientData = async (data: IUpdatePatient) => {
+    if (dataSelected) {
+      await putDataApi('/patients/current', dataSelected.patients_id as number, data).then((response: BaseResponse) => {
+        showToast(response);
+        getCurrentPatientApi();
+      })
+    }
+  }
+
+  const deleteData = async () => {
+    if (dataSelected) {
+      await deleteDataApi('/patients', dataSelected.patients_id as number).then((response: BaseResponse) => {
+        showToast(response);
+        getCurrentPatientApi();
+      })
+    }
+  }
+
+
+  const showToast = (baseResponse: BaseResponse) => {
+    toast({
+      variant: baseResponse.success ? 'default' : "destructive",
+      description: baseResponse.message,
+      className: `!left-0 !right-0 !mx-auto !w-full ${baseResponse.success && 'bg-blue-900 text-white'} font-bold text-center`,
+      duration: 1500
+    })
   }
 
   return (
@@ -60,6 +121,10 @@ export const CurrentPatients = () => {
           <span className="mx-2"><i className="fa-solid fa-circle-plus" /> Agregar Pacientes</span>
         </Button>
       </div>
+
+      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este paciente?'} />
+      <DialogUpdatePatient open={openDialogUpdate} close={updatePatient} text={'Ingrese la fecha de Egreso'} />
+
       <div className="mt-5">
         {loader ? <Loader /> : (
           dataCurrentPatients && dataCurrentPatients.length > 0 ?
