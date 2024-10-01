@@ -81,19 +81,19 @@ export const Specialities = () => {
   return (
     <div className="w-[100%]">
       <div className="pageInfo">
-        <h1 className="text-2xl font-bold text-neutral-600"><i className="fa-brands fa-medrt mx-2" /> Lista de Intervenciones</h1>
+        <h1 className="text-2xl font-bold text-neutral-600"><i className="fa-brands fa-medrt mx-2" />Lista de Intervenciones</h1>
         <Separator className="mt-3" />
       </div>
       <div className="flex justify-end align-middle items-center mt-5">
         <Input className="w-[30%] mx-5" onChange={(e) => filterData(e.target.value)} placeholder="Buscar Especialidad..." />
-        <Button onClick={() => navigateTo('añadir')} className="bg-blue-900 hover:bg-blue-950 w-[100px] h-[40px]">
+        <Button onClick={() => navigateTo('añadir')} className="bg-blue-900 hover:bg-blue-950 w-[180px] h-[40px]">
           <span className="mx-2">
-            <i className="fa-solid fa-circle-plus" /> Agregar
+            <i className="fa-solid fa-circle-plus" /> Agregar Especialidad
           </span>
         </Button>
       </div>
 
-      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este servicio?'} />
+      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Desea eliminar esta especialidad?'} />
 
       <div className="mt-5">
         {loader ? (
