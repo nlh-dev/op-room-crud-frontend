@@ -141,7 +141,7 @@ export const CurrentPatients = () => {
         )}
       </div>
 
-      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este paciente?'} />
+      <DeleteDialog open={openDialog} close={closeDialog} text={'¿Desea eliminar este paciente?'} />
       <DialogUpdatePatient open={openDialogUpdate} close={updatePatient} text={'Ingrese la fecha de Egreso'} />
 
       <div className="mt-5">

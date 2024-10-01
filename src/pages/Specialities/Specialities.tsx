@@ -85,8 +85,7 @@ export const Specialities = () => {
         <Separator className="mt-3" />
       </div>
       <div className="flex justify-end align-middle items-center mt-5">
-        <h1 className="font-bold">Añadir Especialidad</h1>
-        <Input className="w-[30%] mx-5" onChange={(e) => filterData(e.target.value)} placeholder="Inserte Especialidad..." />
+        <Input className="w-[30%] mx-5" onChange={(e) => filterData(e.target.value)} placeholder="Buscar Especialidad..." />
         <Button onClick={() => navigateTo('añadir')} className="bg-blue-900 hover:bg-blue-950 w-[100px] h-[40px]">
           <span className="mx-2">
             <i className="fa-solid fa-circle-plus" /> Agregar

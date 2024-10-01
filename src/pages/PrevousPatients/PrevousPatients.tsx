@@ -101,7 +101,7 @@ export const PreviousPatients = () => {
           <Input className="w-[30%]" onChange={(e) => filterData(e.target.value)} placeholder="Buscar Paciente..." />
         </div>
 
-        <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este paciente?'} />
+        <DeleteDialog open={openDialog} close={closeDialog} text={'¿Desea eliminar este paciente?'} />
         
         {loader ? <Loader /> : (
           dataPrevousPatients && dataPrevousPatients.length > 0 ?

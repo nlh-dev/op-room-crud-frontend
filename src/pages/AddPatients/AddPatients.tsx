@@ -151,7 +151,7 @@ export const AddPatients = () => {
           INFORMACIÓN DEL PACIENTE
         </h1>
         <Form  {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-start flex-wrap gap-5 w-full">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-between flex-wrap gap-5 w-full">
             <FormField
               control={form.control}
               name="fullName"

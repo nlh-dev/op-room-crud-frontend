@@ -22,15 +22,15 @@ export const TableComponent: FC<ITable> = ({ columns, dataTable, returnData }) =
       <TableHeader className="bg-blue-900">
         <TableRow>
           {columns && columns.map((col, index: number) => (
-            <TableHead className="text-white w-[100px] text-center" key={index}>{col.header}  </TableHead>
+            <TableHead className="text-white w-[100px] text-center" key={index}>{col.header}</TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
         {dataTable && dataTable.map((table, index: number) => (
-          <TableRow key={index} className="text-center">
+          <TableRow key={index} className="align-middle items-center text-center">
             {columns && columns.map((col, index: number) => (
-              <TableCell key={index} className="font-medium">
+              <TableCell key={index} className="font-medium py-3">
                 {col.type == "text" ? col.column(table) : ''}
                 {col.type == 'icon' && (
                   <div className="flex items-center justify-evenly">
