@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 // DATA COMPONENTS
-import { initialValues, ICreateUser, UserRolesSelector, userValidationSchema } from "./AddUsers.data";
+import { initialValues, ICreateUser, UserRolesSelector, userValidationSchema, UserStateSelector } from "./AddUsers.data";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -82,7 +82,8 @@ export const AddUsers = () => {
       const parseUser: ICreateUser = {
         name: getUser.op_users,
         password: getUser.op_users_password,
-        role: getUser.op_users_role.toString()
+        role: getUser.op_users_role.toString(),
+        state: getUser.op_users_state ? '1' : '0'
       }
       setDefaultValues(parseUser);
       reset(parseUser);
@@ -103,8 +104,8 @@ export const AddUsers = () => {
       <div className="mt-5">
         <h1 className="text-2xl font-bold text-neutral-600">INFORMACIÓN DE USUARIO</h1>
         <Form  {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="formContainer w-[100%] flex justify-between items-center mt-5">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <div className="mt-5 flex items-center justify-between flex-wrap gap-5 w-full">
               <FormField
                 control={form.control}
                 name="name"
@@ -148,6 +149,29 @@ export const AddUsers = () => {
                       </FormControl>
                       <SelectContent >
                         {UserRolesSelector && UserRolesSelector.map((opt: ISelect, index: number) => (
+                          <SelectItem key={index} value={opt.selectValue.toString()}>{opt.selectLabel}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="state"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Estado del Usuario</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl className="!w-[300px]">
+                        <SelectTrigger>
+                          <SelectValue placeholder="" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent >
+                        {UserStateSelector && UserStateSelector.map((opt: ISelect, index: number) => (
                           <SelectItem key={index} value={opt.selectValue.toString()}>{opt.selectLabel}</SelectItem>
                         ))}
                       </SelectContent>
