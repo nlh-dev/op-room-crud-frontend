@@ -5,7 +5,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { Button } from "../ui/button";
 import { defaultValues, IUpdatePatient, IUpdatePatientDialog, patientUpdateValidationSchema } from "./DialogUpdatePatient.data"
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
-export const DialogUpdatePatient: FC<IUpdatePatientDialog> = ({ open, close, text }) => {
+export const DialogUpdatePatient: FC<IUpdatePatientDialog> = ({ open, close, text, value }) => {
     const form = useForm<IUpdatePatient>({
         defaultValues,
         resolver: zodResolver(patientUpdateValidationSchema)
@@ -28,6 +28,15 @@ export const DialogUpdatePatient: FC<IUpdatePatientDialog> = ({ open, close, tex
     const onSubmit = (updatePatient: IUpdatePatient) => {
         close(updatePatient);
     }
+
+    useEffect(() => {
+        if (value != null) {
+            const setValue = {
+                date_end: new Date(value)
+            }
+            form.reset(setValue);
+        }
+    }, [open])
 
     return (
         <div >

@@ -16,4 +16,5 @@ export interface IUpdatePatientDialog {
     open: boolean;
     close: (formUpdate: IUpdatePatient | null) => void;
     text: string;
+    value?: Date | null
 }

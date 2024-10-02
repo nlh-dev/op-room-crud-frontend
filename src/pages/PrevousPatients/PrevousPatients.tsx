@@ -10,20 +10,23 @@ import { PrevousPatientsColums } from "./PrevousPatients.data";
 import { IPatient } from "@/interfaces/patients.interface";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { deleteDataApi, getDataApi } from "@/backend/baseAxios";
+import { deleteDataApi, getDataApi, putDataApi } from "@/backend/baseAxios";
 import { Loader } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { BaseResponse } from "@/interfaces/base-response.interface";
 import { DeleteDialog } from "@/components/DeleteDialog/DeleteDialog";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { DialogUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient";
+import { IUpdatePatient } from "@/components/DialogUpdatePatient/DialogUpdatePatient.data";
 
 
 export const PreviousPatients = () => {
-  const navigateTo = useNavigate();
+  // const navigateTo = useNavigate();
   const [dataPrevousPatients, setDataPrevousPatient] = useState<IPatient[]>([]);
   const [baseDataPrevousPatients, setBaseDataPrevousPatient] = useState<IPatient[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
   const [dataSelected, setDataSelected] = useState<IPatient>();
+  const [openDialogUpdate, setOpenDialogUpdate] = useState<boolean>(false);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { toast } = useToast();
   
@@ -56,8 +59,8 @@ export const PreviousPatients = () => {
       setOpenDialog(true);
     }
     if (icon == 'Editar') {
-      localStorage.setItem('patientEdit', JSON.stringify(data));
-      navigateTo('/pacientes_actuales/editar')
+      setDataSelected(data);
+      setOpenDialogUpdate(true);
     }
   };
 
@@ -66,6 +69,22 @@ export const PreviousPatients = () => {
       deleteData();
     }
     setOpenDialog(false);
+  }
+
+  const updatePatient = (date: IUpdatePatient | null) => {
+    if (date) {
+      updatePatientData(date);
+    }
+    setOpenDialogUpdate(false);
+  }
+
+  const updatePatientData = async (data: IUpdatePatient) => {
+    if (dataSelected) {
+      await putDataApi('/patients/current', dataSelected.patients_id as number, data).then((response: BaseResponse) => {
+        showToast(response);
+        getPrevousPatientApi();
+      })
+    }
   }
 
   const deleteData = async () => {
@@ -101,7 +120,10 @@ export const PreviousPatients = () => {
           <Input className="w-[30%]" onChange={(e) => filterData(e.target.value)} placeholder="Buscar Paciente..." />
         </div>
 
-        <DeleteDialog open={openDialog} close={closeDialog} text={'¿Desea eliminar este paciente?'} />
+        <DeleteDialog open={openDialog} close={closeDialog} text={'¿Estas seguro de que quieres eliminar este paciente?'} />
+        {dataSelected && (
+          <DialogUpdatePatient open={openDialogUpdate} close={updatePatient} value={dataSelected.patients_updated_date} text={'Ingrese la fecha de Egreso'} />
+        )}
         
         {loader ? <Loader /> : (
           dataPrevousPatients && dataPrevousPatients.length > 0 ?
