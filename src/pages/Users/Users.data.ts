@@ -23,8 +23,8 @@ export const UserColumns: IColumns<IUserData>[] = [
   },
   {
     header: "Estado",
-    type: "select",
-    column: (data) => data.op_users_state.toString(),
+    type: "text",
+    column: (data) => data.op_users_state == true ? 'Activo' : 'Inactivo',
     className: [''],
     selectComponent: [
       {
