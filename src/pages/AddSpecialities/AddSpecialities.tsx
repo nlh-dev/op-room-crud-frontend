@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { ICreateSpeciality, initialValues, specialityValidationSchema } from './AddSpecialities.data';
+import { Separator } from '@/components/ui/separator';
 
 export const AddSpecialities = () => {
     const navigateTo = useNavigate();
@@ -88,6 +89,7 @@ export const AddSpecialities = () => {
                     <h1 className="text-2xl font-bold text-neutral-600">
                         <i className={`fa-solid ${text == 'Añadir' ? 'fa-brands fa-medrt mx-2' : 'fa-user-pen'}`} /> {text} Especialidad
                     </h1>
+                    <Separator className='mt-3'/>
                 </div>
             </div>
             <div className="mt-5">
